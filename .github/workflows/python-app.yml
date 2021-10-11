@@ -1,0 +1,85 @@
+
+username = "Trial"
+userbal = 140
+transaction_code = 1234 #the momo code
+pin = 4040
+useraccN = 987654
+verification_code = "D0Ne"
+denominations = [10, 20, 50]
+dictionary = [username, pin, userbal]
+
+#user would like to update pin
+
+def online_banking():
+    update_pin()
+def update_pin():
+    userPin = int(input("To continue this service, Enter your pin: "))
+    
+    #user inputs pin
+    if userPin != pin:
+        
+    #user is asked to input a new pin
+        print("Please your pin is incorrect")
+        userAsk = str(input("Would you like to change your pin? Y/N: ")) 
+        if userAsk == "Y".lower():
+            print("A confirmation code has been sent to your phone")
+            
+            #after the user has been verfied, he/she proceeds with the change
+            userAuth = str(input("Proceed to enter verification code here: "))
+            if userAuth == verification_code:
+                userAuth2 = int(input(" Enter new 4 digit pin: "))
+                userAuth2 == pin
+                dictionary.append(userAuth2)
+                print("Congratulations! Your Debit card pin has been changed!")
+            elif userAuth != verification_code:
+                print("please verification code is wrong, please enter code again")
+                userAuth = str(input("Enter verification code again: "))
+                if userAuth == verification_code:
+                    userAuth2 = int(input(" Enter new 4 digit pin: "))
+                    userAuth2 == pin
+                    dictionary.append(userAuth2)
+                    print("Congratulations! Your Debit card pin has been changed!")
+            print("you can now proceed with your transaction")
+            addOns()
+        if userAsk == "N".lower():
+            print("please check your pin and try again")
+    else:
+        print("Welcome ", username, "!")
+        addOns()
+
+def addOns():
+    print("Would you like to withdraw using your Debit or Mobile Money account?")
+    ques1 = str(input("Debit or Momo: "))
+    if ques1 == "Momo".lower():
+        print("Which service?" "\n" "1)MTN", "\n" , "2)Vodafone", "\n" ,
+        "3)AirtelTigo")
+        userService = str(input("Type in your option : "))
+        userIn_1 = int(input("Kindly input the code sent to your number "))
+        userIn_1 = transaction_code
+        print("How much would you want to withdraw?")
+        userIn_2 = int(input("Enter amount: " ))
+        '''userIn_2a = str(input("Would you want variety of denominations? Y/N:
+        "))'''
+        
+        balance = userbal - userIn_2
+        if userIn_2 < userbal:
+            print("Your remaining balance is: " , balance, "cedis")
+            print("Thank you for banking with TS Bank " + username)
+        else:
+            print("Your balance is insufficient")
+            
+    elif ques1 == "Debit".lower():
+        userIn_3 = str(input("Kindly input your account pin: "))
+        userIn_3 = pin
+        print("How much would you like to withdraw?")
+        userIn_4 = int(input("Enter amount: "))
+        balance2 = userbal - userIn_4
+        if userIn_4 < userbal:
+            print("Your remaining balance is: " , balance2, "cedis")
+            print("Thank you for banking with TS Bank " + username)
+        else:
+            print("Your balance is insufficient")
+    else:
+        print("Invalid")
+print('Welcome to our banking platform, Please proceed')
+online_banking()
